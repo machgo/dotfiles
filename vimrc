@@ -36,7 +36,12 @@ set hidden
 set ruler
 set backspace=indent,eol,start
 set visualbell
+
 set undofile
+set undodir=~/.vim/.undo//
+set directory=~/.vim/.swp//
+set backupdir=~/.vim/.backup//
+
 set wrap
 set textwidth=80
 set formatoptions=qrn1
@@ -50,6 +55,5 @@ if !exists('g:airline_symbols')
     let g:airline_symbols = {}
 endif
 let g:airline_symbols.space = "\ua0"
-
 let g:airline_theme='powerlineish'
 
