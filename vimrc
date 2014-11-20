@@ -13,14 +13,24 @@ inoremap <down> <nop>
 inoremap <left> <nop>
 inoremap <right> <nop>
 
+" utf8 encoding
+set encoding=utf-8
+set enc=utf-8
+set fenc=utf-8
+set termencoding=utf-8
+
+" indentation
+set autoindent
+set smartindent
+set tabstop=4
+set shiftwidth=4
+set softtabstop=4
+
 nnoremap j gj
 nnoremap k gk
 set ttyfast
 set nocompatible
 set modelines=0
-set tabstop=4
-set shiftwidth=4
-set softtabstop=4
 set expandtab
 set number
 set ignorecase
@@ -31,8 +41,6 @@ set showmatch
 set hlsearch
 set laststatus=2
 set title
-set encoding=utf-8
-set autoindent
 set showmode
 set showcmd
 set hidden
