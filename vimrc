@@ -3,6 +3,9 @@ filetype off
 filetype plugin indent on
 syntax on
 
+" enable neocomplete
+let g:neocomplete#enable_at_startup = 1
+
 " disable cursorkeys :)
 nnoremap <up> <nop>
 nnoremap <down> <nop>
