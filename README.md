@@ -3,9 +3,9 @@ my configfiles
 2. tmux.conf
 
 Plugins for vim:
-neocomplete
-neosnippet
-vim-airline
+* neocomplete
+* neosnippet
+* vim-airline
 
 Add the following to bashrc/zshrc
 export LC_ALL=en_US.UTF-8
