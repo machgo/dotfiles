@@ -80,6 +80,9 @@ set colorcolumn=85
 set timeout " Do time out on mappings and others
 set timeoutlen=50 " Wait {num} ms before timing out a mapping
 
+" 256 Colors
+set t_Co=256
+
 " Airline Plugin
 let g:airline_powerline_fonts = 1
 if !exists('g:airline_symbols')
