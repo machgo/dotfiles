@@ -6,6 +6,7 @@ syntax on
 " enable neocomplete
 let g:neocomplete#enable_at_startup = 1
 
+
 " Plugin key-mappings noesnippets
 imap <C-k>     <Plug>(neosnippet_expand_or_jump)
 smap <C-k>     <Plug>(neosnippet_expand_or_jump)
@@ -90,4 +91,8 @@ if !exists('g:airline_symbols')
 endif
 let g:airline_symbols.space = "\ua0"
 let g:airline_theme='powerlineish'
+
+" enable theme
+" wombat-theme @ https://github.com/vim-scripts/wombat256.vim
+:colorscheme wombat256mod
 
