@@ -94,5 +94,5 @@ let g:airline_theme='powerlineish'
 
 " enable theme
 " wombat-theme @ https://github.com/vim-scripts/wombat256.vim
-:colorscheme wombat256mod
+:colorscheme wombat256i
 

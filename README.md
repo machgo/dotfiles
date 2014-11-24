@@ -6,9 +6,11 @@ Plugins for vim:
 * neocomplete
 * neosnippet
 * vim-airline
+* vim-fugitive
+* vim-ps1
 
 Theme for vim:
-* wombat256 from https://github.com/vim-scripts/wombat256.vim
+* wombat256i from https://github.com/dsolstad/vim-wombat256i.git
 
 Add the following to bashrc/zshrc
 export LC_ALL=en_US.UTF-8
@@ -16,4 +18,5 @@ export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 
 theme=Cloud
+
 
