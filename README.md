@@ -11,13 +11,13 @@ Plugins for vim:
 * vim-ps1
 
 Theme for vim:
-* wombat256i from https://github.com/dsolstad/vim-wombat256i.git
+* Hybrid https://github.com/w0ng/vim-hybrid
 
 Add the following to bashrc/zshrc
 export LC_ALL=en_US.UTF-8
 
 export LANG=en_US.UTF-8
 
-theme=Cloud
+theme=cloud
 
 

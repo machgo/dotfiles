@@ -1,3 +1,4 @@
+" initialize pathogen pkgmgmt
 execute pathogen#infect()
 filetype off
 filetype plugin indent on
@@ -22,6 +23,7 @@ smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
 if has('conceal')
   set conceallevel=2 concealcursor=i
 endif
+
 " disable cursorkeys :)
 nnoremap <up> <nop>
 nnoremap <down> <nop>
@@ -73,6 +75,9 @@ set undodir=~/.vim/.undo//
 set directory=~/.vim/.swp//
 set backupdir=~/.vim/.backup//
 
+" font 
+set guifont=DejaVu_Sans_Mono_for_Powerline:h10:cANSI
+
 set wrap
 set textwidth=80
 set formatoptions=qrn1
@@ -90,9 +95,9 @@ if !exists('g:airline_symbols')
     let g:airline_symbols = {}
 endif
 let g:airline_symbols.space = "\ua0"
-let g:airline_theme='powerlineish'
+let g:airline_theme='hybrid'
 
 " enable theme
-" wombat-theme @ https://github.com/vim-scripts/wombat256.vim
-:colorscheme wombat256i
+:colorscheme hybrid
+set background=dark
 
