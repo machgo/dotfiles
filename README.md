@@ -6,6 +6,7 @@ Plugins for vim:
 * neocomplete
 * neosnippet
 * vim-airline
+* vim-bufferline
 * vim-fugitive
 * vim-ps1
 
