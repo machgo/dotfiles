@@ -7,7 +7,13 @@ Plugins for vim:
 * neosnippet
 * vim-airline
 
+Theme for vim:
+* wombat256 from https://github.com/vim-scripts/wombat256.vim
+
 Add the following to bashrc/zshrc
 export LC_ALL=en_US.UTF-8
+
 export LANG=en_US.UTF-8
+
 theme=Cloud
+
