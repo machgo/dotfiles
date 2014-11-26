@@ -7,7 +7,6 @@ syntax on
 " enable neocomplete
 let g:neocomplete#enable_at_startup = 1
 
-
 " Plugin key-mappings noesnippets
 imap <C-k>     <Plug>(neosnippet_expand_or_jump)
 smap <C-k>     <Plug>(neosnippet_expand_or_jump)
@@ -34,6 +33,10 @@ inoremap <down> <nop>
 inoremap <left> <nop>
 inoremap <right> <nop>
 
+" Leader-Combos
+nnoremap <Leader>gs :Gstatus<CR>
+nnoremap <Leader>gc :Gcommit<CR>
+
 " utf8 encoding
 set encoding=utf-8
 set enc=utf-8
@@ -47,12 +50,16 @@ set tabstop=4
 set shiftwidth=4
 set softtabstop=4
 
+" long lines as break lines
 nnoremap j gj
 nnoremap k gk
 set ttyfast
 set nocompatible
 set modelines=0
+
+" spaces instead of tabs
 set expandtab
+
 set number
 set ignorecase
 set smartcase
@@ -84,7 +91,7 @@ set formatoptions=qrn1
 set colorcolumn=85
 
 set timeout " Do time out on mappings and others
-set timeoutlen=50 " Wait {num} ms before timing out a mapping
+set timeoutlen=500 " Wait {num} ms before timing out a mapping
 
 " 256 Colors
 set t_Co=256
