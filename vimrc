@@ -36,6 +36,8 @@ inoremap <right> <nop>
 " Leader-Combos
 nnoremap <Leader>gs :Gstatus<CR>
 nnoremap <Leader>gc :Gcommit<CR>
+nnoremap <Leader>gp :Gpush<CR>
+nnoremap <Leader>gl :Gpull<CR>
 
 " utf8 encoding
 set encoding=utf-8
