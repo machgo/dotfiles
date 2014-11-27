@@ -1,8 +1,21 @@
-" initialize pathogen pkgmgmt
-execute pathogen#infect()
+set nocompatible
 filetype off
+
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+Plugin 'gmarik/Vundle.vim'
+Plugin 'tpope/vim-fugitive'
+Plugin 'bling/vim-airline'
+Plugin 'bling/vim-bufferline'
+Plugin 'PProvost/vim-ps1'
+Plugin 'w0ng/vim-hybrid'
+Plugin 'zenorocha/dracula-theme'
+Plugin 'Shougo/neocomplete'
+Plugin 'Shougo/neosnippet'
+Plugin 'Shougo/neosnippet-snippets'
+call vundle#end()
 filetype plugin indent on
-syntax on
 
 " enable neocomplete
 let g:neocomplete#enable_at_startup = 1
@@ -62,6 +75,7 @@ set modelines=0
 " spaces instead of tabs
 set expandtab
 
+syntax on
 set number
 set ignorecase
 set smartcase
@@ -77,6 +91,9 @@ set hidden
 set ruler
 set backspace=indent,eol,start
 set visualbell
+
+set shortmess=a
+set cmdheight=1
 
 " Savefolders for undo,backup,swap
 set undofile
@@ -107,6 +124,5 @@ let g:airline_symbols.space = "\ua0"
 let g:airline_theme='hybrid'
 
 " enable theme
-:colorscheme hybrid
 set background=dark
 
