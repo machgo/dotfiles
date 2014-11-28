@@ -1,21 +1,18 @@
 set nocompatible
-filetype off
 
 " set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-Plugin 'gmarik/Vundle.vim'
-Plugin 'tpope/vim-fugitive'
-Plugin 'bling/vim-airline'
-Plugin 'bling/vim-bufferline'
-Plugin 'PProvost/vim-ps1'
-Plugin 'w0ng/vim-hybrid'
-Plugin 'zenorocha/dracula-theme'
-Plugin 'Shougo/neocomplete'
-Plugin 'Shougo/neosnippet'
-Plugin 'Shougo/neosnippet-snippets'
-call vundle#end()
-filetype plugin indent on
+call plug#begin('~/.vim/plugged')
+Plug 'gmarik/Vundle.vim'
+Plug 'tpope/vim-fugitive'
+Plug 'bling/vim-airline'
+Plug 'bling/vim-bufferline'
+Plug 'PProvost/vim-ps1'
+Plug 'w0ng/vim-hybrid'
+Plug 'sjl/badwolf'
+Plug 'Shougo/neocomplete'
+Plug 'Shougo/neosnippet'
+Plug 'Shougo/neosnippet-snippets'
+call plug#end()
 
 " enable neocomplete
 let g:neocomplete#enable_at_startup = 1
@@ -51,6 +48,10 @@ nnoremap <Leader>gs :Gstatus<CR>
 nnoremap <Leader>gc :Gcommit<CR>
 nnoremap <Leader>gp :Gpush<CR>
 nnoremap <Leader>gl :Gpull<CR>
+
+" enable theme
+set background=dark
+colorscheme badwolf
 
 " utf8 encoding
 set encoding=utf-8
@@ -121,8 +122,6 @@ if !exists('g:airline_symbols')
     let g:airline_symbols = {}
 endif
 let g:airline_symbols.space = "\ua0"
-let g:airline_theme='hybrid'
+let g:airline_theme='badwolf'
 
-" enable theme
-set background=dark
 
