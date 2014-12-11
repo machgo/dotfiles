@@ -8,7 +8,7 @@ Plug 'bling/vim-airline'
 Plug 'bling/vim-bufferline'
 Plug 'PProvost/vim-ps1'
 Plug 'w0ng/vim-hybrid'
-Plug 'sjl/badwolf'
+Plug 'vim-scripts/Lucius'
 Plug 'Shougo/neocomplete'
 Plug 'Shougo/neosnippet'
 Plug 'Shougo/neosnippet-snippets'
@@ -51,7 +51,9 @@ nnoremap <Leader>gl :Gpull<CR>
 
 " enable theme
 set background=dark
-colorscheme badwolf
+colorscheme lucius
+LuciusBlack
+
 
 " utf8 encoding
 set encoding=utf-8
@@ -122,6 +124,6 @@ if !exists('g:airline_symbols')
     let g:airline_symbols = {}
 endif
 let g:airline_symbols.space = "\ua0"
-let g:airline_theme='badwolf'
+let g:airline_theme='molokai'
 
 
