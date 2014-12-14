@@ -16,6 +16,11 @@ call plug#end()
 
 " enable neocomplete
 let g:neocomplete#enable_at_startup = 1
+let g:neocomplete#enable_smart_case = 1
+
+" increase cache_limit
+let g:neocomplete#sources#tags#cache_limit_size = 10000000000
+
 
 " Plugin key-mappings noesnippets
 imap <C-k>     <Plug>(neosnippet_expand_or_jump)
