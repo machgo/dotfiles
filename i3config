@@ -149,7 +149,7 @@ bar
     }
     # i3bar position
     position top
-    status_command ~/.i3/conky
+    status_command i3status -c ~/.i3/i3status.conf
 }
 
 # bindsym $mod+l exec i3lock
@@ -159,5 +159,17 @@ new_float pixel 2
 # move workspace to left and right monitors
 bindsym $mod+Shift+bracketleft move workspace to output left
 bindsym $mod+Shift+bracketright move workspace to output right
+
+#lock screen
+bindsym $mod+Control+l exec sh ~/.i3/i3lock.sh
+
+# Colors
+
+client.unfocused #666666 #666666 #ffffff
+client.urgent #aa0000 #990000 #ffffff
+
+#autostart applications
+exec --no-startup-id volumeicon
+exec --no-startup-id feh --bg-fill ~/pictures/wallpapers/penguin.jpg
 
 
