@@ -8,7 +8,7 @@ Plug 'bling/vim-airline'
 Plug 'bling/vim-bufferline'
 Plug 'PProvost/vim-ps1'
 Plug 'w0ng/vim-hybrid'
-Plug 'sjl/badwolf'
+Plug 'vim-scripts/Lucius'
 Plug 'Shougo/neocomplete'
 Plug 'Shougo/neosnippet'
 Plug 'Shougo/neosnippet-snippets'
@@ -17,6 +17,11 @@ call plug#end()
 
 " enable neocomplete
 let g:neocomplete#enable_at_startup = 1
+let g:neocomplete#enable_smart_case = 1
+
+" increase cache_limit
+let g:neocomplete#sources#tags#cache_limit_size = 10000000000
+
 
 " disable folding in latex
 let g:latex_fold_enabled = 0
@@ -55,7 +60,9 @@ nnoremap <Leader>gl :Gpull<CR>
 
 " enable theme
 set background=dark
-colorscheme badwolf
+colorscheme lucius
+LuciusBlack
+
 
 " utf8 encoding
 set encoding=utf-8
@@ -126,6 +133,6 @@ if !exists('g:airline_symbols')
     let g:airline_symbols = {}
 endif
 let g:airline_symbols.space = "\ua0"
-let g:airline_theme='badwolf'
+let g:airline_theme='molokai'
 
 
