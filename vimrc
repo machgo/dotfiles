@@ -12,10 +12,14 @@ Plug 'sjl/badwolf'
 Plug 'Shougo/neocomplete'
 Plug 'Shougo/neosnippet'
 Plug 'Shougo/neosnippet-snippets'
+Plug 'lervag/vim-latex'
 call plug#end()
 
 " enable neocomplete
 let g:neocomplete#enable_at_startup = 1
+
+" disable folding in latex
+let g:latex_fold_enabled = 0
 
 " Plugin key-mappings noesnippets
 imap <C-k>     <Plug>(neosnippet_expand_or_jump)
