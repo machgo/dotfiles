@@ -10,3 +10,9 @@ zstyle :compinstall filename '/home/marco/.zshrc'
 autoload -Uz compinit
 compinit
 # End of lines added by compinstall
+#
+
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
+
+eval "$(pyenv init -)"
