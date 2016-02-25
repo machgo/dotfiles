@@ -2,9 +2,9 @@ set nocompatible
 
 " set the runtime path to include Vundle and initialize
 call plug#begin('~/.vim/plugged')
-Plug 'gmarik/Vundle.vim'
 Plug 'tpope/vim-fugitive'
-Plug 'bling/vim-airline'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 Plug 'bling/vim-bufferline'
 Plug 'PProvost/vim-ps1'
 Plug 'w0ng/vim-hybrid'
