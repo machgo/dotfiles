@@ -43,6 +43,8 @@ nnoremap <Leader>gc :Gcommit<CR>
 nnoremap <Leader>gp :Gpush<CR>
 nnoremap <Leader>gl :Gpull<CR>
 
+nnoremap <Leader><space> :nohlsearch<CR>
+
 " enable theme
 set background=dark
 colorscheme lucius
