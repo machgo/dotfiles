@@ -21,10 +21,6 @@ let g:neocomplete#enable_smart_case = 1
 " increase cache_limit
 let g:neocomplete#sources#tags#cache_limit_size = 10000000000
 
-
-" disable folding in latex
-let g:latex_fold_enabled = 0
-
 " Plugin key-mappings noesnippets
 imap <C-k>     <Plug>(neosnippet_expand_or_jump)
 smap <C-k>     <Plug>(neosnippet_expand_or_jump)
@@ -40,16 +36,6 @@ smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
 if has('conceal')
   set conceallevel=2 concealcursor=i
 endif
-
-" disable cursorkeys :)
-nnoremap <up> <nop>
-nnoremap <down> <nop>
-nnoremap <left> <nop>
-nnoremap <right> <nop>
-inoremap <up> <nop>
-inoremap <down> <nop>
-inoremap <left> <nop>
-inoremap <right> <nop>
 
 " Leader-Combos
 nnoremap <Leader>gs :Gstatus<CR>
