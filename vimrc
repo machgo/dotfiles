@@ -37,7 +37,7 @@ if has('conceal')
   set conceallevel=2 concealcursor=i
 endif
 
-" Leader-Combos
+" Leader-Combos (Leader = \)
 nnoremap <Leader>gs :Gstatus<CR>
 nnoremap <Leader>gc :Gcommit<CR>
 nnoremap <Leader>gp :Gpush<CR>
