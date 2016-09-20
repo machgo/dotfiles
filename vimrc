@@ -3,15 +3,18 @@ set nocompatible
 " set the runtime path to include Vundle and initialize
 call plug#begin('~/.vim/plugged')
 Plug 'tpope/vim-fugitive'
+Plug 'airblade/vim-gitgutter'
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'mhinz/vim-startify'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'bling/vim-bufferline'
 Plug 'PProvost/vim-ps1'
 Plug 'w0ng/vim-hybrid'
-Plug 'vim-scripts/Lucius'
 Plug 'Shougo/neocomplete'
 Plug 'Shougo/neosnippet'
 Plug 'Shougo/neosnippet-snippets'
+Plug 'morhetz/gruvbox'
 call plug#end()
 
 " enable neocomplete
@@ -47,9 +50,7 @@ nnoremap <Leader><space> :nohlsearch<CR>
 
 " enable theme
 set background=dark
-colorscheme lucius
-LuciusBlack
-
+colorscheme gruvbox
 
 " utf8 encoding
 set encoding=utf-8
@@ -120,9 +121,11 @@ if !exists('g:airline_symbols')
     let g:airline_symbols = {}
 endif
 let g:airline_symbols.space = "\ua0"
-let g:airline_theme='molokai'
+let g:airline_theme='gruvbox'
 
 " remove toolbars in gvim
 set guioptions-=m
 set guioptions-=T
 
+" maximize on startup (on Windows)
+au GUIEnter * simalt ~x
