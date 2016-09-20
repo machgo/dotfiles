@@ -12,7 +12,6 @@ Plug 'vim-scripts/Lucius'
 Plug 'Shougo/neocomplete'
 Plug 'Shougo/neosnippet'
 Plug 'Shougo/neosnippet-snippets'
-Plug 'lervag/vim-latex'
 call plug#end()
 
 " enable neocomplete
