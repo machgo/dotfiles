@@ -122,4 +122,7 @@ endif
 let g:airline_symbols.space = "\ua0"
 let g:airline_theme='molokai'
 
+" remove toolbars in gvim
+set guioptions-=m
+set guioptions-=T
 
