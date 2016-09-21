@@ -5,10 +5,10 @@ call plug#begin('~/.vim/plugged')
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 Plug 'ctrlpvim/ctrlp.vim'
+Plug 'tpope/vim-unimpaired'
 Plug 'mhinz/vim-startify'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'bling/vim-bufferline'
 Plug 'PProvost/vim-ps1'
 Plug 'w0ng/vim-hybrid'
 Plug 'Shougo/neocomplete'
@@ -51,6 +51,7 @@ nnoremap <Leader><space> :nohlsearch<CR>
 " enable theme
 set background=dark
 colorscheme gruvbox
+
 
 " utf8 encoding
 set encoding=utf-8
@@ -122,6 +123,7 @@ if !exists('g:airline_symbols')
 endif
 let g:airline_symbols.space = "\ua0"
 let g:airline_theme='gruvbox'
+let g:airline#extensions#tabline#enabled = 1
 
 " remove toolbars in gvim
 set guioptions-=m
