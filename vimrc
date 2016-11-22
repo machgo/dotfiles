@@ -15,6 +15,11 @@ Plug 'Shougo/neocomplete'
 Plug 'Shougo/neosnippet'
 Plug 'Shougo/neosnippet-snippets'
 Plug 'morhetz/gruvbox'
+Plug 'elentok/plaintasks.vim'
+Plug 'ludovicchabant/vim-gutentags'
+Plug 'Shougo/vimproc.vim', {'do': 'make'}
+Plug 'Quramy/tsuquyomi'
+Plug 'leafgarland/typescript-vim'
 call plug#end()
 
 " enable neocomplete
