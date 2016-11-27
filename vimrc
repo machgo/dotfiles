@@ -1,12 +1,11 @@
 set nocompatible
 
-" set the runtime path to include Vundle and initialize
+" load plugins via Plug
 call plug#begin('~/.vim/plugged')
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'tpope/vim-unimpaired'
-Plug 'mhinz/vim-startify'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'PProvost/vim-ps1'
@@ -20,6 +19,7 @@ Plug 'ludovicchabant/vim-gutentags'
 Plug 'Shougo/vimproc.vim', {'do': 'make'}
 Plug 'Quramy/tsuquyomi'
 Plug 'leafgarland/typescript-vim'
+Plug 'fatih/vim-go'
 call plug#end()
 
 " enable neocomplete
@@ -29,20 +29,20 @@ let g:neocomplete#enable_smart_case = 1
 " increase cache_limit
 let g:neocomplete#sources#tags#cache_limit_size = 10000000000
 
+" <TAB>: for jump to next entry
+inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+" <C-h>, <BS>: close popup and delete backword char.
+inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
+inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
+
 " Plugin key-mappings noesnippets
 imap <C-k>     <Plug>(neosnippet_expand_or_jump)
 smap <C-k>     <Plug>(neosnippet_expand_or_jump)
 xmap <C-k>     <Plug>(neosnippet_expand_target)
-" SuperTab like snippets behavior.
-imap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-\ "\<Plug>(neosnippet_expand_or_jump)"
-\: pumvisible() ? "\<C-n>" : "\<TAB>"
-smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-\ "\<Plug>(neosnippet_expand_or_jump)"
-\: "\<TAB>"
+
 " For snippet_complete marker.
 if has('conceal')
-  set conceallevel=2 concealcursor=i
+  set conceallevel=2 concealcursor=niv
 endif
 
 " Leader-Combos (Leader = \)
