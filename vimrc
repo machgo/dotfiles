@@ -45,17 +45,22 @@ if has('conceal')
 endif
 
 " Leader-Combos (Leader = \)
+" Git Commands
 nnoremap <Leader>gs :Gstatus<CR>
 nnoremap <Leader>gc :Gcommit<CR>
 nnoremap <Leader>gp :Gpush<CR>
 nnoremap <Leader>gl :Gpull<CR>
 
+" clear searchresults
 nnoremap <Leader><space> :nohlsearch<CR>
+
+" close all but the current one
+nnoremap <Leader>o :only<CR>
+
 
 " enable theme
 set background=dark
 colorscheme molokai
-
 
 " utf8 encoding
 set encoding=utf-8
