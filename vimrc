@@ -2,24 +2,23 @@ set nocompatible
 
 " load plugins via Plug
 call plug#begin('~/.vim/plugged')
-Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 Plug 'ctrlpvim/ctrlp.vim'
+Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-unimpaired'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'PProvost/vim-ps1'
-Plug 'w0ng/vim-hybrid'
 Plug 'Shougo/neocomplete'
 Plug 'Shougo/neosnippet'
 Plug 'Shougo/neosnippet-snippets'
-Plug 'morhetz/gruvbox'
 Plug 'elentok/plaintasks.vim'
 Plug 'ludovicchabant/vim-gutentags'
-Plug 'Shougo/vimproc.vim', {'do': 'make'}
-Plug 'Quramy/tsuquyomi'
-Plug 'leafgarland/typescript-vim'
+Plug 'Shougo/vimproc.vim', {'do': 'make'}   " typescript
+Plug 'Quramy/tsuquyomi'                     " typescript
+Plug 'leafgarland/typescript-vim'           " typescript
 Plug 'fatih/vim-go'
+Plug 'tomasr/molokai'
 call plug#end()
 
 " enable neocomplete
@@ -55,7 +54,7 @@ nnoremap <Leader><space> :nohlsearch<CR>
 
 " enable theme
 set background=dark
-colorscheme gruvbox
+colorscheme molokai
 
 
 " utf8 encoding
@@ -127,7 +126,7 @@ if !exists('g:airline_symbols')
     let g:airline_symbols = {}
 endif
 let g:airline_symbols.space = "\ua0"
-let g:airline_theme='gruvbox'
+let g:airline_theme='molokai'
 let g:airline#extensions#tabline#enabled = 1
 
 " remove toolbars in gvim
