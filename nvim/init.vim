@@ -3,6 +3,10 @@ call plug#begin('~/.vim/plugged')
 Plug 'PProvost/vim-ps1'
 Plug 'fatih/vim-go'
 Plug 'tomasr/molokai'
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'tpope/vim-fugitive'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 call plug#end()
 
 " Leader-Combos (Leader = \)
@@ -21,6 +25,7 @@ nnoremap <Leader>o :only<CR>
 " enable theme
 set background=dark
 color molokai
+let g:airline_theme='molokai'
 
 " utf8 encoding
 set encoding=utf-8
@@ -35,10 +40,10 @@ set tabstop=4
 set shiftwidth=4
 set softtabstop=4
 
-" long lines as break lines
 set ttyfast
 set nocompatible
 set modelines=0
+set relativenumber
 
 " spaces instead of tabs
 set expandtab
@@ -69,9 +74,6 @@ set undodir=~/.vim/.undo//
 set directory=~/.vim/.swp//
 set backupdir=~/.vim/.backup//
 
-" font 
-set guifont=DejaVu_Sans_Mono_for_Powerline:h10:cANSI
-
 set wrap
 set textwidth=80
 set formatoptions=qrn1
@@ -79,3 +81,4 @@ set colorcolumn=85
 
 set timeout " Do time out on mappings and others
 set timeoutlen=500 " Wait {num} ms before timing out a mapping
+
