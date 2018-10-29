@@ -7,6 +7,7 @@ Plug 'ctrlpvim/ctrlp.vim'
 Plug 'tpope/vim-fugitive'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+Plug 'vimwiki/vimwiki'
 call plug#end()
 
 " Leader-Combos (Leader = \)
@@ -42,6 +43,7 @@ set softtabstop=4
 
 set ttyfast
 set nocompatible
+filetype plugin on
 set modelines=0
 set relativenumber
 
