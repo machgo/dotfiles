@@ -80,12 +80,6 @@ set visualbell
 set shortmess=a
 set cmdheight=1
 
-" Savefolders for undo,backup,swap
-set undofile
-set undodir=~/.vim/.undo//
-set directory=~/.vim/.swp//
-set backupdir=~/.vim/.backup//
-
 set wrap
 set textwidth=80
 set formatoptions=qrn1
