@@ -3,7 +3,6 @@ call plug#begin('~/.vim/plugged')
 Plug 'PProvost/vim-ps1'
 Plug 'fatih/vim-go'
 Plug 'tomasr/molokai'
-Plug 'ctrlpvim/ctrlp.vim'
 Plug 'tpope/vim-fugitive'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
@@ -24,9 +23,6 @@ nnoremap <Leader><space> :nohlsearch<CR>
 
 " close all but the current one
 nnoremap <Leader>o :only<CR>
-
-" ignore for ctrlp
-set wildignore+=**/node_modules/**
 
 " linting stuff for ale
 let g:ale_linters = {
@@ -51,20 +47,19 @@ set tabstop=4
 set shiftwidth=4
 set softtabstop=4
 
+" spaces instead of tabs
+set expandtab
+
 set ttyfast
 set nocompatible
 filetype plugin on
 set modelines=0
 set relativenumber
 
-" spaces instead of tabs
-set expandtab
-
 syntax on
 set number
 set ignorecase
 set smartcase
-set gdefault
 set incsearch
 set showmatch
 set hlsearch
