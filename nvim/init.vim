@@ -3,6 +3,9 @@ call plug#begin('~/.vim/plugged')
 Plug 'PProvost/vim-ps1'
 Plug 'fatih/vim-go'
 Plug 'tpope/vim-fugitive'
+Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
+Plug 'nvim-lualine/lualine.nvim'
+Plug 'kyazdani42/nvim-web-devicons'
 call plug#end()
 
 " Leader-Combos (Leader = \)
@@ -16,20 +19,27 @@ nnoremap <Leader>gl :Git pull<CR>
 nnoremap <Leader><space> :nohlsearch<CR>
 
 " enable theme
-set background=dark
+colorscheme tokyonight
 
 " indentation
-set smartindent
-set tabstop=4
-set expandtab
-set relativenumber
-set number
-set ignorecase
-set title
-set visualbell
+set smartindent " try to smart indent new lines
+set tabstop=4 " tabs = 4 spaces
+set expandtab " convert tabs to spaces
+set relativenumber " relative number on left side
+set number " show numbers on left side
+set ignorecase " ignore case on search
+set title " show current file in title of consoel
+set visualbell " flash screen insted of beeping
 
-set textwidth=80
-set colorcolumn=85
+set textwidth=80  " 80 chars per line
+set colorcolumn=85 " show line at 85
 
 let g:go_fmt_command = "goimports"
 
+lua << END
+require('lualine').setup {
+  options = {
+    theme = 'tokyonight'
+  }
+}
+END
