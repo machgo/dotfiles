@@ -6,6 +6,9 @@ Plug 'tpope/vim-fugitive'
 Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
 Plug 'nvim-lualine/lualine.nvim'
 Plug 'kyazdani42/nvim-web-devicons'
+Plug 'ms-jpq/coq_nvim', {'branch': 'coq'}
+Plug 'ms-jpq/coq.artifacts', {'branch': 'artifacts'}
+Plug 'ms-jpq/chadtree', {'branch': 'chad', 'do': 'python3 -m chadtree deps'}
 call plug#end()
 
 " Leader-Combos (Leader = \)
@@ -35,6 +38,11 @@ set textwidth=80  " 80 chars per line
 set colorcolumn=85 " show line at 85
 
 let g:go_fmt_command = "goimports"
+
+let g:coq_settings = { 'auto_start': 'shut-up' }
+
+nnoremap <leader>v <cmd>CHADopen<cr>
+nnoremap <leader>l <cmd>call setqflist([])<cr>
 
 lua << END
 require('lualine').setup {
