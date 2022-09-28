@@ -1,16 +1,3 @@
-" load plugins via Plug
-call plug#begin('~/.vim/plugged')
-Plug 'PProvost/vim-ps1'
-Plug 'fatih/vim-go'
-Plug 'tpope/vim-fugitive'
-Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
-Plug 'nvim-lualine/lualine.nvim'
-Plug 'kyazdani42/nvim-web-devicons'
-Plug 'ms-jpq/coq_nvim', {'branch': 'coq'}
-Plug 'ms-jpq/coq.artifacts', {'branch': 'artifacts'}
-Plug 'ms-jpq/chadtree', {'branch': 'chad', 'do': 'python3 -m chadtree deps'}
-call plug#end()
-
 " Leader-Combos (Leader = \)
 " Git Commands
 nnoremap <Leader>gs :Git<CR>
@@ -37,6 +24,8 @@ set visualbell " flash screen insted of beeping
 set textwidth=80  " 80 chars per line
 set colorcolumn=85 " show line at 85
 
+set completeopt=menu,menuone,noselect " enable autocomplete
+
 let g:go_fmt_command = "goimports"
 
 let g:coq_settings = { 'auto_start': 'shut-up' }
@@ -44,10 +33,8 @@ let g:coq_settings = { 'auto_start': 'shut-up' }
 nnoremap <leader>v <cmd>CHADopen<cr>
 nnoremap <leader>l <cmd>call setqflist([])<cr>
 
-lua << END
-require('lualine').setup {
-  options = {
-    theme = 'tokyonight'
-  }
-}
-END
+" Find files using Telescope command-line sugar.
+nnoremap <leader>ff <cmd>Telescope find_files<cr>
+nnoremap <leader>fg <cmd>Telescope live_grep<cr>
+nnoremap <leader>fb <cmd>Telescope buffers<cr>
+nnoremap <leader>fh <cmd>Telescope help_tags<cr>
