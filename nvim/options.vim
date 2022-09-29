@@ -14,6 +14,7 @@ colorscheme tokyonight
 " indentation
 set smartindent " try to smart indent new lines
 set tabstop=4 " tabs = 4 spaces
+set shiftwidth=4 "indenting is 4 spaces
 set expandtab " convert tabs to spaces
 set relativenumber " relative number on left side
 set number " show numbers on left side
