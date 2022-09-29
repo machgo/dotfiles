@@ -69,3 +69,6 @@
   require('lspconfig')['vimls'].setup {
     capabilities = capabilities
   }
+  require('lspconfig')['bashls'].setup {
+    capabilities = capabilities
+  }
