@@ -5,6 +5,7 @@ local core_conf_files = {
   "lualine.lua", -- lualine settings
   "nvim-cmp.lua", -- nvim-cmp settings
   "mason.lua", -- mason settings
+  "nvimtree.lua", -- nvimtree settings
 }
 
 -- source all the core config files

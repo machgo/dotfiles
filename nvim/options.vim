@@ -31,7 +31,7 @@ let g:go_fmt_command = "goimports"
 
 let g:coq_settings = { 'auto_start': 'shut-up' }
 
-nnoremap <leader>v <cmd>CHADopen<cr>
+nnoremap <leader>v <cmd>NvimTreeToggle<cr>
 nnoremap <leader>l <cmd>call setqflist([])<cr>
 
 " Find files using Telescope command-line sugar.
