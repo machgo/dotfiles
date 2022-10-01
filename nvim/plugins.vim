@@ -2,9 +2,11 @@
 call plug#begin('~/.vim/plugged')
 Plug 'PProvost/vim-ps1'
 Plug 'fatih/vim-go'
-Plug 'tpope/vim-fugitive'
 Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
 Plug 'nvim-lualine/lualine.nvim'
+" git plugins
+Plug 'lewis6991/gitsigns.nvim'
+Plug 'tpope/vim-fugitive'
 " tree plugin
 Plug 'kyazdani42/nvim-web-devicons'
 Plug 'kyazdani42/nvim-tree.lua'

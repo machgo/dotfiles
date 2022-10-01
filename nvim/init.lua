@@ -6,6 +6,7 @@ local core_conf_files = {
   "nvim-cmp.lua", -- nvim-cmp settings
   "mason.lua", -- mason settings
   "nvimtree.lua", -- nvimtree settings
+  "gitsigns.lua", -- gitsigns settings
 }
 
 -- source all the core config files
