@@ -72,3 +72,6 @@
   require('lspconfig')['bashls'].setup {
     capabilities = capabilities
   }
+  require('lspconfig')['powershell_es'].setup {
+    capabilities = capabilities
+  }
