@@ -60,20 +60,26 @@
     })
   })
 
+
   -- Set up lspconfig.
   --
   --
-  local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
-  -- Replace <YOUR_LSP_SERVER> with each lsp server you've enabled.
-  require('lspconfig')['lua_ls'].setup {
-    capabilities = capabilities
-  }
-  require('lspconfig')['vimls'].setup {
-    capabilities = capabilities
-  }
-  require('lspconfig')['bashls'].setup {
-    capabilities = capabilities
-  }
-  require('lspconfig')['powershell_es'].setup {
-    capabilities = capabilities
-  }
+  local lspconfig = require('lspconfig')
+  local lsp_defaults = lspconfig.util.default_config
+  lsp_defaults.capabilities = vim.tbl_deep_extend(
+    'force',
+    lsp_defaults.capabilities,
+    require('cmp_nvim_lsp').default_capabilities()
+  )
+  lspconfig.lua_ls.setup({
+    single_file_support = true,
+    flags = {
+      debounce_text_changes = 150,
+    },
+  })
+  lspconfig.lua_ls.setup({})
+  lspconfig.vimls.setup({})
+  lspconfig.bashls.setup({})
+  lspconfig.powershell_es.setup({})
+
+
