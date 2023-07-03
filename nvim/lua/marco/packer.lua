@@ -11,8 +11,8 @@ return require('packer').startup(function(use)
 		requires = { {'nvim-lua/plenary.nvim'} }
 	}
 
-	-- gruvbox theme
-	use { 'ellisonleao/gruvbox.nvim' }
+	-- tokyonight theme
+    use { 'folke/tokyonight.nvim' }
 
 	-- treesitter
 	use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
