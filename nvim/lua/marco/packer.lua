@@ -28,10 +28,10 @@ return require('packer').startup(function(use)
             -- LSP Support
             {'neovim/nvim-lspconfig'},             -- Required
             {                                      -- Optional
-            'williamboman/mason.nvim',
-            run = function()
-                pcall(vim.cmd, 'MasonUpdate')
-            end,
+                'williamboman/mason.nvim',
+                run = function()
+                    pcall(vim.cmd, 'MasonUpdate')
+                end,
             },
             {'williamboman/mason-lspconfig.nvim'}, -- Optional
 
@@ -44,5 +44,9 @@ return require('packer').startup(function(use)
     use{
         'iamcco/markdown-preview.nvim',
         run = function() vim.fn["mkdp#util#install"]() end,
+    }
+    use {
+        'nvim-lualine/lualine.nvim',
+        requires = { 'nvim-tree/nvim-web-devicons', opt = true }
     }
 end)
