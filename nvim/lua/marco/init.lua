@@ -1,3 +1,3 @@
+require("marco.lazy")
 require("marco.remap")
-require("marco.packer")
 require("marco.set")
