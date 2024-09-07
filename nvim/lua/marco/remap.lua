@@ -5,3 +5,7 @@ vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 
 vim.keymap.set("v", "<leader>y", '"*y')
 
+vim.keymap.set("n", "<leader>n", ':bn<CR>')
+vim.keymap.set("n", "<leader>p", ':bp<CR>')
+vim.keymap.set("n", "<leader>x", ':bd<CR>')
+
