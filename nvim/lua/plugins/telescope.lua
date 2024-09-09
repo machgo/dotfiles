@@ -6,7 +6,7 @@ return {
         "nvim-lua/plenary.nvim",
     },
     keys = {
-        { "<leader>xx", "<cmd>Telescope buffers sort_mru=true sort_lastused=true<cr>" },
+        { "<leader>bb", "<cmd>Telescope buffers sort_mru=true sort_lastused=true<cr>" },
         { "<leader>ff", "<cmd>Telescope find_files<cr>" },
         { "<leader>fg", "<cmd>Telescope live_grep<cr>" },
     },

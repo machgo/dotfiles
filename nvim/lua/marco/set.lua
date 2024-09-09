@@ -36,4 +36,4 @@ if vim.fn.has('wsl') == 1 then
     }
 end
 
-vim.cmd("colorscheme nightfox")
+vim.cmd("colorscheme tokyonight-storm")
