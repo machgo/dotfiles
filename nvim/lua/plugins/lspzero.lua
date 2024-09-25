@@ -94,6 +94,8 @@ return {
 					end,
 				},
 			})
+
+			vim.filetype.add({ extension = { hcl = "terraform" } })
 		end,
 	},
 }
