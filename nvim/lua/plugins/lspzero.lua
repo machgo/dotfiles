@@ -85,6 +85,7 @@ return {
 					"terraformls",
 					"vimls",
 					"yamlls",
+                    "pyright",
 				},
 				handlers = {
 					-- this first function is the "default handler"
