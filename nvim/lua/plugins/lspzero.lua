@@ -6,11 +6,11 @@ return {
 		config = false,
 	},
 	{
-		"williamboman/mason.nvim",
+		"mason-org/mason.nvim",
 		lazy = false,
 		config = true,
+        version = "^1.0.0"
 	},
-
 	-- Autocompletion
 	{
 		"hrsh7th/nvim-cmp",
@@ -46,8 +46,8 @@ return {
 		event = { "BufReadPre", "BufNewFile" },
 		dependencies = {
 			{ "hrsh7th/cmp-nvim-lsp" },
-			{ "williamboman/mason.nvim" },
-			{ "williamboman/mason-lspconfig.nvim" },
+			{ "mason-org/mason.nvim", version = "^1.0.0" },
+            { "mason-org/mason-lspconfig.nvim", version = "^1.0.0" },
 		},
 		config = function()
 			local lsp_zero = require("lsp-zero")
