@@ -12,7 +12,7 @@ return {
 			javascript = { "prettierd", "prettier", stop_after_first = true },
 			yaml = { "prettier" },
 			json = { "prettier" },
-			terraform = { "tflint" },
+			terraform = { "terraform_fmt" },
 			hcl = { "hclfmt" },
 			markdown = { "prettier" },
 			css = { "prettier" },
