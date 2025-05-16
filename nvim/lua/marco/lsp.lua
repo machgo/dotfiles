@@ -25,6 +25,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
 -- don't select first autocompletion match automaticaly
 vim.cmd("set completeopt+=noselect")
 
+-- setup powershell lsp
 vim.lsp.config("powershell_es", {
 	bundle_path = "~/.local/share/nvim/mason/packages/powershell-editor-services",
 	shell = "pwsh",
