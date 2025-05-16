@@ -9,6 +9,7 @@ vim.filetype.add({
 		[".*/.*host_vars.*/.*ya?ml"] = "yaml.ansible",
 		[".*/local.ya?ml"] = "yaml.ansible",
 		[".*-ansible/.*ya?ml"] = "yaml.ansible",
+        [".*pkr.hcl"] = "hclpacker",
 	},
 })
 

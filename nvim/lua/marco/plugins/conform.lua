@@ -19,6 +19,7 @@ return {
 			html = { "prettier" },
 			typescript = { "prettier" },
 			ps1 = { lsp_format = "prefer" },
+            hclpacker = { "packer_fmt" },
 		},
 		format_on_save = { timeout_ms = 500 },
 	},
