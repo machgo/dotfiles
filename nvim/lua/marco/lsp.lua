@@ -31,3 +31,6 @@ vim.lsp.config("powershell_es", {
 	bundle_path = "~/.local/share/nvim/mason/packages/powershell-editor-services",
 	shell = "pwsh",
 })
+
+-- treesitter for hcl
+vim.treesitter.language.register("hcl", "hclpacker")
