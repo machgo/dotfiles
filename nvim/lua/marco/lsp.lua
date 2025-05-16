@@ -26,6 +26,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
 vim.cmd("set completeopt+=noselect")
 
 vim.lsp.config("powershell_es", {
-    bundle_path = "~/.local/share/nvim/mason/packages/powershell-editor-services",
+	bundle_path = "~/.local/share/nvim/mason/packages/powershell-editor-services",
 	shell = "pwsh",
 })
