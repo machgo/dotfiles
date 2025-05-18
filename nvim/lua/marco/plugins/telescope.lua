@@ -11,6 +11,7 @@ return {
         { "<leader>ff", "<cmd>Telescope find_files<cr>" },
         { "<leader>fg", "<cmd>Telescope live_grep<cr>" },
         { "<leader>fu", "<cmd>Telescope undo<cr>" },
+        { "<leader>fh", "<cmd>Telescope help_tags<cr>" },
     },
     config = function()
         require("telescope").setup({
