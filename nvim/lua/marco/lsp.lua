@@ -10,6 +10,7 @@ vim.filetype.add({
 		[".*/local.ya?ml"] = "yaml.ansible",
 		[".*-ansible/.*ya?ml"] = "yaml.ansible",
         [".*pkr.hcl"] = "hclpacker",
+        [".*.hcl"] = "terraform",
 	},
 })
 
