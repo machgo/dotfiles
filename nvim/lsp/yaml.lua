@@ -2,7 +2,7 @@ return {
 	filetypes = { "yaml" },
 	cmd = { "yaml-language-server", "--stdio" },
 	settings = {
-		yaml = {
+	    yaml = {
 			schemas = {
 				kubernetes = "*.yaml",
 				["http://json.schemastore.org/github-workflow"] = ".github/workflows/*",
