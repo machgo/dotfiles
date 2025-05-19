@@ -2,9 +2,9 @@ return {
 	filetypes = { "yaml" },
 	cmd = { "yaml-language-server", "--stdio" },
 	settings = {
-	    yaml = {
+		yaml = {
 			schemas = {
-				kubernetes = "*.yaml",
+				["https://raw.githubusercontent.com/yannh/kubernetes-json-schema/refs/heads/master/v1.32.1-standalone-strict/all.json"] = "*.yaml",
 				["http://json.schemastore.org/github-workflow"] = ".github/workflows/*",
 				["http://json.schemastore.org/github-action"] = ".github/action.{yml,yaml}",
 				["http://json.schemastore.org/ansible-stable-2.9"] = "roles/tasks/*.{yml,yaml}",
