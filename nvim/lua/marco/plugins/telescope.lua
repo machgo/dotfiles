@@ -1,10 +1,10 @@
 return {
     "nvim-telescope/telescope.nvim",
-    branch = "0.1.x",
     event = "VimEnter",
     dependencies = {
         "nvim-lua/plenary.nvim",
         "debugloop/telescope-undo.nvim",
+        { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
     },
     keys = {
         { "<leader>bb", "<cmd>Telescope buffers sort_mru=true sort_lastused=true<cr>" },
