@@ -1,6 +1,12 @@
 return {
-		"williamboman/mason.nvim",
-		tag = "stable",
-		lazy = false,
-		config = true,
-	}
+    "mason-org/mason.nvim",
+     opts = {
+        ui = {
+            icons = {
+                package_installed = "✓",
+                package_pending = "➜",
+                package_uninstalled = "✗"
+            }
+        }
+    }
+}
