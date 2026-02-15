@@ -1,4 +1,4 @@
-vim.lsp.enable({ "yaml", "ansible", "lua", "marksman", "powershell_es", "terraformls", "pyright" })
+vim.lsp.enable({ "yaml", "ansible", "lua", "marksman", "powershell_es", "terraformls", "pyright", "gopls" })
 
 -- yaml for ansible files
 vim.filetype.add({
@@ -9,8 +9,8 @@ vim.filetype.add({
 		[".*/.*host_vars.*/.*ya?ml"] = "yaml.ansible",
 		[".*/local.ya?ml"] = "yaml.ansible",
 		[".*-ansible/.*ya?ml"] = "yaml.ansible",
-        [".*pkr.hcl"] = "hclpacker",
-        [".*.hcl"] = "terraform",
+		[".*pkr.hcl"] = "hclpacker",
+		[".*.hcl"] = "terraform",
 	},
 })
 
