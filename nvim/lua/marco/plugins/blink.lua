@@ -52,6 +52,15 @@ return {
 		--
 		-- See the fuzzy documentation for more information
 		fuzzy = { implementation = "prefer_rust_with_warning" },
+
+		-- enable signature (experimental)
+		signature = {
+			enabled = true,
+			window = {
+				treesitter_highlighting = true,
+				show_documentation = true,
+			},
+		},
 	},
 	opts_extend = { "sources.default" },
 }
