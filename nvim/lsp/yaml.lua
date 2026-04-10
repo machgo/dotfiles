@@ -7,7 +7,7 @@ return {
 		yaml = {
 			format = { enable = true },
 			schemas = {
-				["https://raw.githubusercontent.com/yannh/kubernetes-json-schema/refs/heads/master/v1.32.1-standalone-strict/all.json"] = "*.yaml",
+				["https://raw.githubusercontent.com/yannh/kubernetes-json-schema/refs/heads/master/v1.34.6-standalone-strict/all.json"] = "*.yaml",
 				["http://json.schemastore.org/github-workflow"] = ".github/workflows/*",
 				["http://json.schemastore.org/github-action"] = ".github/action.{yml,yaml}",
 				["http://json.schemastore.org/ansible-stable-2.9"] = "roles/tasks/*.{yml,yaml}",
