@@ -2,7 +2,10 @@ return {
 	filetypes = { "yaml" },
 	cmd = { "yaml-language-server", "--stdio" },
 	settings = {
+		redhat = { telemetry = { enabled = false } },
+		-- formatting disabled by default in yaml-language-server; enable it
 		yaml = {
+			format = { enable = true },
 			schemas = {
 				["https://raw.githubusercontent.com/yannh/kubernetes-json-schema/refs/heads/master/v1.32.1-standalone-strict/all.json"] = "*.yaml",
 				["http://json.schemastore.org/github-workflow"] = ".github/workflows/*",

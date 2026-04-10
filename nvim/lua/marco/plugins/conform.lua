@@ -14,7 +14,7 @@ return {
 			rust = { "rustfmt", lsp_format = "fallback" },
 			-- Conform will run the first available formatter
 			javascript = { "prettierd", "prettier", stop_after_first = true },
-			yaml = { "prettier" },
+			yaml = { lsp_format = "prefer" },
 			json = { "prettier" },
 			terraform = { "terraform_fmt" },
 			hcl = { "hclfmt" },
