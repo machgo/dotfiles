@@ -9,6 +9,8 @@ import { basename, dirname, isAbsolute, relative, resolve, sep } from "node:path
 const ALLOW_ONCE = "Allow once";
 const ALLOW_EXACT = "Allow this exact command for this session";
 const DENY = "Deny";
+const ALWAYS_ALLOWED_EXECUTABLES = new Set(["find", "git", "rg"]);
+const ALWAYS_ALLOWED_DIRECTORIES = new Set(["/opt/homebrew/lib/node_modules"]);
 const PATH_TOOL_NAMES = new Set(["read", "write", "edit", "grep", "find", "ls"]);
 
 async function canonicalPath(rawPath: string, cwd: string): Promise<string> {
@@ -49,19 +51,74 @@ async function permissionDirectory(target: string): Promise<string> {
 }
 
 /**
- * Returns the executable name only for a single, simple shell command.
- * Compound commands and commands containing shell expansion are deliberately
- * excluded so allowing `git` cannot also approve `git status && rm -rf ...`.
+ * Returns the executables in a conservative shell command list. Lists joined
+ * with `;`, newlines, `&&`, or `||` are supported, but pipelines, redirects,
+ * command substitutions, background jobs, and shell groups are rejected.
+ * This lets `git status && git diff` use the git whitelist without allowing
+ * `git status && rm -rf ...`.
  */
-function simpleExecutable(command: string): string | undefined {
-	const trimmed = command.trim();
-	if (!trimmed || /[\n\r;&|<>`$(){}\\]/.test(trimmed)) return undefined;
+function simpleExecutables(command: string): string[] | undefined {
+	const segments: string[] = [];
+	let segmentStart = 0;
+	let quote: "'" | '"' | undefined;
+	let escaped = false;
 
-	const firstWord = trimmed.match(/^(?:"([^"]+)"|'([^']+)'|([^\s]+))/);
-	const executable = firstWord?.[1] ?? firstWord?.[2] ?? firstWord?.[3];
-	if (!executable || executable.includes("=")) return undefined;
+	for (let index = 0; index < command.length; index++) {
+		const character = command[index];
 
-	return basename(executable);
+		if (escaped) {
+			escaped = false;
+			continue;
+		}
+		if (character === "\\" && quote !== "'") {
+			escaped = true;
+			continue;
+		}
+		if (quote) {
+			if (character === quote) quote = undefined;
+			else if (quote === '"' && (character === "`" || (character === "$" && command[index + 1] === "("))) {
+				return undefined;
+			}
+			continue;
+		}
+		if (character === "'" || character === '"') {
+			quote = character;
+			continue;
+		}
+		if (character === "`" || (character === "$" && command[index + 1] === "(")) return undefined;
+		if (/[<>(){}]/.test(character)) return undefined;
+
+		let separatorLength = 0;
+		if (character === ";" || character === "\n" || character === "\r") separatorLength = 1;
+		else if ((character === "&" || character === "|") && command[index + 1] === character) {
+			separatorLength = 2;
+		} else if (character === "&" || character === "|") {
+			return undefined;
+		}
+
+		if (separatorLength) {
+			const segment = command.slice(segmentStart, index).trim();
+			if (!segment) return undefined;
+			segments.push(segment);
+			index += separatorLength - 1;
+			segmentStart = index + 1;
+		}
+	}
+
+	if (quote || escaped) return undefined;
+	const finalSegment = command.slice(segmentStart).trim();
+	if (finalSegment) segments.push(finalSegment);
+	else if (segments.length === 0) return undefined;
+
+	const executables = segments.map((segment) => {
+		const firstWord = segment.match(/^(?:"([^"]+)"|'([^']+)'|([^\s]+))/);
+		const executable = firstWord?.[1] ?? firstWord?.[2] ?? firstWord?.[3];
+		return executable && !executable.includes("=") ? basename(executable) : undefined;
+	});
+
+	return executables.every((executable): executable is string => executable !== undefined)
+		? executables
+		: undefined;
 }
 
 export default function shellPermission(pi: ExtensionAPI) {
@@ -73,14 +130,24 @@ export default function shellPermission(pi: ExtensionAPI) {
 	async function approve(command: string, ctx: ExtensionContext): Promise<boolean> {
 		if (allowedExactCommands.has(command)) return true;
 
-		const executable = simpleExecutable(command);
-		if (executable && allowedExecutables.has(executable)) return true;
+		const executables = simpleExecutables(command);
+		if (
+			executables &&
+			executables.every(
+				(executable) =>
+					ALWAYS_ALLOWED_EXECUTABLES.has(executable) || allowedExecutables.has(executable),
+			)
+		) {
+			return true;
+		}
 
 		// Fail closed in print/JSON mode, where pi cannot ask the user.
 		if (!ctx.hasUI) return false;
 
-		const allowExecutable = executable
-			? `Allow “${executable}” for this session (all arguments)`
+		const uniqueExecutable =
+			executables && new Set(executables).size === 1 ? executables[0] : undefined;
+		const allowExecutable = uniqueExecutable
+			? `Allow “${uniqueExecutable}” for this session (all arguments)`
 			: undefined;
 		const choices = [ALLOW_ONCE, ALLOW_EXACT];
 		if (allowExecutable) choices.push(allowExecutable);
@@ -97,8 +164,8 @@ export default function shellPermission(pi: ExtensionAPI) {
 			return true;
 		}
 		if (allowExecutable && choice === allowExecutable) {
-			allowedExecutables.add(executable!);
-			ctx.ui.notify(`Allowed ${executable} commands for this session`, "warning");
+			allowedExecutables.add(uniqueExecutable!);
+			ctx.ui.notify(`Allowed ${uniqueExecutable} commands for this session`, "warning");
 			return true;
 		}
 
@@ -113,6 +180,9 @@ export default function shellPermission(pi: ExtensionAPI) {
 		const cwd = await canonicalPath(ctx.cwd, ctx.cwd);
 		const target = await canonicalPath(rawPath, ctx.cwd);
 		if (isWithin(cwd, target)) return true;
+		if ([...ALWAYS_ALLOWED_DIRECTORIES].some((directory) => isWithin(directory, target))) {
+			return true;
+		}
 		if (allowedExactPaths.has(target)) return true;
 		if ([...allowedDirectories].some((directory) => isWithin(directory, target))) return true;
 		if (!ctx.hasUI) return false;
@@ -203,7 +273,7 @@ export default function shellPermission(pi: ExtensionAPI) {
 		handler: async (_args, ctx) => {
 			const executables = [...allowedExecutables].sort();
 			ctx.ui.notify(
-				`Allowed executables: ${executables.join(", ") || "none"}\nAllowed exact commands: ${allowedExactCommands.size}`,
+				`Always-allowed executables: ${[...ALWAYS_ALLOWED_EXECUTABLES].sort().join(", ")}\nSession-allowed executables: ${executables.join(", ") || "none"}\nAllowed exact commands: ${allowedExactCommands.size}`,
 				"info",
 			);
 		},
@@ -240,7 +310,7 @@ export default function shellPermission(pi: ExtensionAPI) {
 		description: "Show external filesystem permissions granted during this session",
 		handler: async (_args, ctx) => {
 			ctx.ui.notify(
-				`Allowed directories: ${[...allowedDirectories].sort().join(", ") || "none"}\nAllowed exact paths: ${[...allowedExactPaths].sort().join(", ") || "none"}`,
+				`Always-allowed directories: ${[...ALWAYS_ALLOWED_DIRECTORIES].sort().join(", ")}\nSession-allowed directories: ${[...allowedDirectories].sort().join(", ") || "none"}\nAllowed exact paths: ${[...allowedExactPaths].sort().join(", ") || "none"}`,
 				"info",
 			);
 		},
