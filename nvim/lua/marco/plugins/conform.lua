@@ -15,6 +15,7 @@ return {
 			-- Conform will run the first available formatter
 			javascript = { "prettierd", "prettier", stop_after_first = true },
 			yaml = { lsp_format = "prefer" },
+			["yaml.ansible"] = { lsp_format = "prefer" },
 			json = { "prettier" },
 			terraform = { "terraform_fmt" },
 			hcl = { "hclfmt" },
