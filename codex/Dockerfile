@@ -26,12 +26,24 @@ RUN apt-get update \
     && chmod a+r /etc/apt/keyrings/docker.asc \
     && echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/debian $(. /etc/os-release && echo "$VERSION_CODENAME") stable" \
         > /etc/apt/sources.list.d/docker.list \
+    && curl -fsSL https://packages.microsoft.com/config/debian/12/packages-microsoft-prod.deb \
+        -o /tmp/packages-microsoft-prod.deb \
+    && dpkg -i /tmp/packages-microsoft-prod.deb \
+    && rm /tmp/packages-microsoft-prod.deb \
     && apt-get update \
     && apt-get install --yes --no-install-recommends \
         docker-buildx-plugin \
         docker-ce-cli \
         docker-compose-plugin \
+        powershell \
     && rm -rf /var/lib/apt/lists/*
+
+RUN python3 -m venv /opt/ansible \
+    && /opt/ansible/bin/pip install --no-cache-dir --upgrade pip ansible \
+    && /opt/ansible/bin/ansible --version \
+    && pwsh --version
+
+ENV PATH="/opt/ansible/bin:${PATH}"
 
 RUN npm install --global "@openai/codex@${CODEX_VERSION}" \
     && npm cache clean --force \
