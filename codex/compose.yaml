@@ -1,0 +1,51 @@
+name: codex-container
+
+x-codex-common: &codex-common
+  build:
+    context: .
+    args:
+      CODEX_VERSION: ${CODEX_VERSION:-0.147.0}
+      USER_UID: ${CODEX_UID:-1000}
+      USER_GID: ${CODEX_GID:-1000}
+  image: ${CODEX_IMAGE:-codex-container:0.147.0-1000-1000}
+  init: true
+  stdin_open: true
+  tty: true
+  working_dir: /workspace
+  environment:
+    COLORTERM: ${COLORTERM:-}
+    TERM: ${TERM:-xterm-256color}
+  volumes:
+    - type: bind
+      source: ${CODEX_WORKSPACE:-.}
+      target: /workspace
+    - type: volume
+      source: codex-home
+      target: /home/codex
+
+services:
+  codex:
+    <<: *codex-common
+
+  codex-docker:
+    <<: *codex-common
+    profiles:
+      - docker
+    group_add:
+      - ${DOCKER_GID:-0}
+    volumes:
+      - type: bind
+        source: ${CODEX_WORKSPACE:-.}
+        target: /workspace
+      - type: volume
+        source: codex-home
+        target: /home/codex
+      - type: bind
+        source: ${DOCKER_SOCKET_PATH:-/var/run/docker.sock}
+        target: /var/run/docker.sock
+        bind:
+          create_host_path: false
+
+volumes:
+  codex-home:
+    name: codex-container-home

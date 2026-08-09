@@ -1,0 +1,111 @@
+#!/bin/sh
+
+set -eu
+
+DEFAULT_CODEX_VERSION=0.147.0
+
+usage() {
+    cat <<'EOF'
+Usage: codex-container [LAUNCHER OPTIONS] [--] [CODEX ARGUMENTS]
+
+Run Codex in a container with the current directory mounted at /workspace.
+
+Launcher options:
+  --docker    Grant the session access to the host Docker daemon.
+  --rebuild   Rebuild the image before starting Codex.
+  -h, --help  Show this launcher help.
+
+Examples:
+  codex-container
+  codex-container "Explain this project"
+  codex-container login --device-auth
+  codex-container --docker
+  codex-container --rebuild -- --version
+  codex-container -- --help
+EOF
+}
+
+fail() {
+    printf 'codex-container: %s\n' "$*" >&2
+    exit 1
+}
+
+script_dir=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)
+compose_file="$script_dir/compose.yaml"
+service=codex
+rebuild=false
+
+while [ "$#" -gt 0 ]; do
+    case "$1" in
+        --docker)
+            service=codex-docker
+            shift
+            ;;
+        --rebuild)
+            rebuild=true
+            shift
+            ;;
+        -h|--help)
+            usage
+            exit 0
+            ;;
+        --)
+            shift
+            break
+            ;;
+        *)
+            break
+            ;;
+    esac
+done
+
+command -v docker >/dev/null 2>&1 || fail "Docker is not installed or is not on PATH"
+docker compose version >/dev/null 2>&1 || fail "Docker Compose v2 is required"
+docker info >/dev/null 2>&1 || fail "the Docker daemon is not available"
+
+export CODEX_VERSION="${CODEX_VERSION:-$DEFAULT_CODEX_VERSION}"
+export CODEX_UID="$(id -u)"
+export CODEX_GID="$(id -g)"
+export CODEX_WORKSPACE="$(pwd -P)"
+export CODEX_IMAGE="codex-container:${CODEX_VERSION}-${CODEX_UID}-${CODEX_GID}"
+
+if [ "$service" = codex-docker ]; then
+    socket_path=${DOCKER_SOCKET_PATH:-}
+
+    if [ -z "$socket_path" ]; then
+        context_socket=$(docker context inspect --format '{{.Endpoints.docker.Host}}' 2>/dev/null || true)
+        case "$context_socket" in
+            unix://*) socket_path=${context_socket#unix://} ;;
+        esac
+    fi
+
+    if [ -z "$socket_path" ] || [ ! -S "$socket_path" ]; then
+        for candidate in /var/run/docker.sock "${HOME}/.docker/run/docker.sock"; do
+            if [ -S "$candidate" ]; then
+                socket_path=$candidate
+                break
+            fi
+        done
+    fi
+
+    [ -n "$socket_path" ] && [ -S "$socket_path" ] \
+        || fail "--docker requested, but no Docker socket could be found"
+
+    export DOCKER_SOCKET_PATH="$socket_path"
+    docker_gid=$(stat -c '%g' "$socket_path" 2>/dev/null || stat -f '%g' "$socket_path" 2>/dev/null) \
+        || fail "could not determine the Docker socket group"
+    export DOCKER_GID="$docker_gid"
+fi
+
+compose() {
+    docker compose --file "$compose_file" --project-directory "$script_dir" "$@"
+}
+
+if [ "$rebuild" = true ] || ! docker image inspect "$CODEX_IMAGE" >/dev/null 2>&1; then
+    compose build --pull "$service"
+fi
+
+exec docker compose \
+    --file "$compose_file" \
+    --project-directory "$script_dir" \
+    run --rm "$service" --dangerously-bypass-approvals-and-sandbox "$@"
