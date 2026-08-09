@@ -30,8 +30,19 @@ fail() {
     exit 1
 }
 
-script_dir=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)
+script_path=$0
+while [ -L "$script_path" ]; do
+    script_dir=$(CDPATH= cd -P -- "$(dirname -- "$script_path")" && pwd)
+    link_target=$(readlink "$script_path") \
+        || fail "could not resolve launcher symlink: $script_path"
+    case "$link_target" in
+        /*) script_path=$link_target ;;
+        *)  script_path=$script_dir/$link_target ;;
+    esac
+done
+script_dir=$(CDPATH= cd -P -- "$(dirname -- "$script_path")" && pwd)
 compose_file="$script_dir/compose.yaml"
+[ -f "$compose_file" ] || fail "Compose file not found: $compose_file"
 service=codex
 rebuild=false
 

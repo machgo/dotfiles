@@ -22,11 +22,27 @@ Run it directly from this repository:
 /path/to/codex/codex-container
 ```
 
-Or link it into a directory on your `PATH`:
+Or link it into the standard user-local binary directory:
 
 ```sh
+mkdir -p ~/.local/bin
 ln -s /path/to/codex/codex-container ~/.local/bin/codex-container
 ```
+
+If `~/.local/bin` is not already on your `PATH`, add it to your shell startup
+file:
+
+```sh
+# Bash
+echo 'export PATH="$HOME/.local/bin:$PATH"' >> ~/.bashrc
+
+# Zsh
+echo 'export PATH="$HOME/.local/bin:$PATH"' >> ~/.zshrc
+```
+
+Start a new shell, or load the updated file in the current shell with
+`source ~/.bashrc` (Bash) or `source ~/.zshrc` (Zsh). You can then run the
+launcher from any directory as `codex-container`.
 
 The first invocation builds the image for your host UID and GID. This keeps
 files created under the mounted project directory owned by your host user.
